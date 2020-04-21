@@ -35,7 +35,7 @@ outputError(Boolean userErr, int err, Boolean flushStdout, const char *format, v
 	vsnprintf(userMsg, BUF_SIZE, format, ap);
 
 	if (userErr)
-		snprintf(errText, BUF_SIZE, " [%s %s]", (err>0&&err<=MAX_ENAME)?enam[err]:"?UNKNOWN?", strerror(err));
+		snprintf(errText, BUF_SIZE, " [%s %s]", (err>0&&err<=MAX_ENAME)?ename[err]:"?UNKNOWN?", strerror(err));
 	else
 		snprintf(errText, BUF_SIZE, ":");
 
@@ -116,7 +116,7 @@ void usageErr(const char *format, ...)
 	
 	va_start(argList, format);
 	vfprintf(stderr, format, argList);
-	va_end();
+	va_end(argList);
 
 	fflush(stderr);
 	exit(EXIT_FAILURE);
@@ -131,7 +131,7 @@ void cmdLineErr(const char *format, ...)
 	fprintf(stderr, "Command-line usage error: ");
 	va_start(argList, format);
 	vfprintf(stderr, format, argList);
-	va_end();
+	va_end(argList);
 
 	fflush(stderr);
 

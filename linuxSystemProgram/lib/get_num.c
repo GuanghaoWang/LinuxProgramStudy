@@ -7,7 +7,7 @@
 
 
 static void
-gnFail (consta char *fname, const char *msg, const char *arg, const char *name)
+gnFail (const char *fname, const char *msg, const char *arg, const char *name)
 {
     fprintf(stderr, "%s error", fname);
     if(name != NULL)
@@ -36,10 +36,10 @@ getNum(const char *fname, const char *arg, int flags, const char *name)
     if(errno != 0)
         gnFail(fname, "strtol() failed", arg, name);
 
-    if (*endptr != '/0')
+    if (*endptr != '\0')
         gnFail(fname, "nonnumeric charachters", arg, name);
     
-    if ((flag & GN_NONNEG) && res<0)
+    if ((flags & GN_NONNEG) && res<0)
         gnFail(fname, "negative value not allowed", arg, name);
 
     if((flags & GN_GT_0) && res <= 0)
