@@ -6,10 +6,6 @@
 #define STR_SIZE 100 
 
 #include <unistd.h>
-// 截断文件，若文件当前长度大于length，丢弃超出部分，若小于则填充空字节或者文件空洞（hole）
-// Both return 0 on success, or -1 on error
-int truncate(const char *pathname, off_t length);
-int ftruncate(int fd, off_t length);
 
 int
 main(int argc, char *argv[])
